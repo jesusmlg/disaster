@@ -70,8 +70,11 @@
                 </div>
             </div>
         </nav>
-
-        @yield('content')
+        <div class="row">
+            <div class="col-md-10 col-md-offset-2">
+                @yield('content')
+            </div>
+        </div>    
     </div>
 
     <!-- Scripts -->

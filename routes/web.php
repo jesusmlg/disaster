@@ -18,7 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/notes','NoteController@index')->name('note_index');
 
-Route::get('/note/new','NoteController@new')->name('note_new');
-Route::post('/note/create','NoteController@create')->name('note_create');
+Route::get('/notes','NoteController@index')->name('note_index');
+Route::get('note/new','NoteController@new')->name('note_new');
+Route::post('note/create','NoteController@create')->name('note_create');
