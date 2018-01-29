@@ -17,7 +17,9 @@ class CreateNotes extends Migration
             $table->increments('id');
             $table->string('title');
             $table->text('note');
-            $table->integer('user_id');            
+            $table->integer('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('visits')->default(0);
+            $table->datetime('last_visit')->default(DB::raw('CURRENT_TIMESTAMP'));            
             $table->timestamps();
         });
     }
@@ -29,6 +31,10 @@ class CreateNotes extends Migration
      */
     public function down()
     { 
+        Schema::table('notes', function (Blueprint $table) {
+            $table->dropForeign('notes_user_id_foreign');
+        });
+
         Schema::dropIfExists('notes');
     }
 }

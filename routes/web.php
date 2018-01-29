@@ -19,6 +19,14 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/notes','NoteController@index')->name('note_index');
-Route::get('note/new','NoteController@new')->name('note_new');
-Route::post('note/create','NoteController@create')->name('note_create');
+Route::middleware('auth')->group(function()
+{
+    Route::get('/notes','NoteController@index')->name('note_index');
+    Route::get('note/new','NoteController@new')->name('note_new');
+    Route::get('note/{id}/show','NoteController@show')->name('note_show');
+    Route::get('note/{id}/edit','NoteController@edit')->name('note_edit');
+    Route::post('note/create','NoteController@create')->name('note_create');
+    Route::post('note/{id}/delete','NoteController@delete')->name('note_delete');
+
+});
+

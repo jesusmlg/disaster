@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Faker\Generator as Faker;
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,6 +12,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        DB::table('users')->insert([
+            'name' => 'Jesus María',
+            'email' => 'inteclu@gmail.com',
+            'password' => bcrypt('123456'),
+        ]);
+
+        factory(\App\Models\Note::class,20)->create();
     }
 }

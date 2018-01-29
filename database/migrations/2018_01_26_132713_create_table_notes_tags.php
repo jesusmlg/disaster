@@ -17,8 +17,8 @@ class CreateTableNotesTags extends Migration
             $table->integer('note_id');
             $table->integer('tag_id');
             
-            $table->foreign('note_id')->references('id')->on('notes');
-            $table->foreign('tag_id')->references('id')->on('tags');
+            $table->foreign('note_id')->references('id')->on('notes')->onDelete('cascade');
+            $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
             $table->Unique(['note_id','tag_id']);
         });
     }
@@ -30,6 +30,9 @@ class CreateTableNotesTags extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('notes_tags', function (Blueprint $table) {
+            $table->dropForeign('notes_tags_note_id_foreign');
+            $table->dropForeign('notes_tags_tag_id_foreign');
+        });
     }
 }

@@ -13,6 +13,9 @@
             {{ Form::label('Note:')}}
             {{ Form::textarea('note') }}
         </div>    
+        <div class="form-group">
+            {{ Form::submit('Save') }}
+        </div>
         
     {{ Form::close() }}
 @endsection
