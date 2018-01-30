@@ -43,4 +43,11 @@ class NoteController extends Controller
 
         return redirect()->route('note_index');
     }
+
+    public function destroy($id)
+    {
+        Note::destroy($id);
+
+        return redirect()->route('note_index');
+    }
 }

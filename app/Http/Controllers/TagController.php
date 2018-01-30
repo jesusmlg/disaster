@@ -12,7 +12,17 @@ class TagController extends Controller
         $tag = new Tag();
 
         $tag->fill(
-            $request->only('tag')
-        );
+            $request->only('name')
+        ); 
+
+    	if($tag->save())
+    		session()->flash('message','Tag saved succesfully');
+
+        if($request->ajax())
+        {
+            return response()->json(['message' => 'ok', 'tag' => $tag->name]);
+        }
+    	//return redirect()->route('show_baby_path',['baby' => $request->baby_id]);
+
     }
 }

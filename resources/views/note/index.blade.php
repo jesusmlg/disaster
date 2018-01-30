@@ -2,10 +2,15 @@
 
 @section('content')
     <h2>Notes List</h2>
-    @foreach($notes as $note)
-    <li>Title: {{ $note->title }}</li>
-    <li>User: {{ $note->user->name }}</li>
-    <li><p>{{ $note->note }}</p></li>
-    <hr>
-    @endforeach
+
+    		@foreach($notes as $note)
+    			<div class="col-md-2 text-center">
+    				<a href="{{ route('note_show',['id' => $note->id]) }}">
+    					<img src="{{ asset('images/file.png') }}" >
+    					<p class="">{{ $note->title }}</p>
+    				</a>
+    				
+    			</div>
+    		@endforeach
+
 @endsection
