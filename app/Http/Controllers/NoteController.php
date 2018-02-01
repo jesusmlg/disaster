@@ -4,16 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use \App\Models\Note;
-use \App\Models\Tag;
+//use \App\Models\Tag;
+use \App\Models\File;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class NoteController extends Controller
 {
     public function new()
     {
         $note = new Note();
-        $tag = new Tag();
-        return view('note.new',['note' => $note, 'tag' => $tag]);
+        //$tag = new Tag();
+        return view('note.new',['note' => $note]);
     }
 
     public function index()
@@ -39,9 +41,23 @@ class NoteController extends Controller
 
         $note->user_id = Auth::user()->id;
 
-        $note->save();
+        if($note->save())
+        {
+            foreach ($request->attachments as $attachment) 
+            {
+                //Storage::put('files/'.$file->getClientOriginalName(),$file);
+                if($url = $attachment->storeAs('files',$attachment->getClientOriginalName()))
+                {
+                    $file = \App\Models\File::create(['url' => $url]);
+                    $note->files()->save($file);
+                }
+            }
+        }                
 
-        return redirect()->route('note_index');
+
+        
+
+        return redirect()->route('note_show',['note' => $note]);
     }
 
     public function destroy($id)

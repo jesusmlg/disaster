@@ -12,4 +12,14 @@ class Note extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function tags()
+    {
+        return $this->belongsToMany('\App\Models\Tag', 'notes_tags');
+    }
+
+    public function files()
+    {
+    	return $this->belongsToMany('\App\Models\File','notes_files');
+    }
 }

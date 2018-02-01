@@ -1,10 +1,19 @@
 $(document).ready(function(){
+
+	$('.summernote').summernote({
+		height: 300,
+	});
+
 	$(document).on('click','#btn-add-tag',function(e){
-		e.preventDefault();		
-		var tag = $("#txt-tag").val();		
-		var data = { 'name' : tag,
+		
+		e.preventDefault();				
+		var tag = $("#txt-tag").val();	
+		var note = $("#note_id").val();
+		var data = { 'tag' : tag,
+					 'note_id': note,
 					'_token': $('meta[name="csrf-token"]').attr('content')
 				};
+
 		$.ajax({
 			url: '/tag/create',
 			method: 'post',
@@ -12,7 +21,8 @@ $(document).ready(function(){
 			data: data,
 			success: function(data)
 			{
-				alert(data.message);
+				alert('ok');
+				$("#note-tags").html(data.html);
 			},
 			error: function(data)
 			{
