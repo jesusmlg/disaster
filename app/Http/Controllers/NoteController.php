@@ -18,9 +18,13 @@ class NoteController extends Controller
         return view('note.new',['note' => $note]);
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $notes = Note::all();
+        
+        if($request->txt)
+            $notes = Note::search($request->txt);
+        else
+            $notes = Note::all();
         return view('note.index',['notes'=> $notes]);
     }
 

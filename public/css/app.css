@@ -8454,3 +8454,21 @@ button.close {
   margin-bottom: 20px;
 }
 
+.btn-green {
+  background-color: #03A200;
+  border: 1px solid #03A200;
+  font-weight: bold;
+}
+
+.btn-green:hover {
+  background-color: #087E05;
+}
+
+#search-icon:hover {
+  cursor: hand;
+}
+
+.mythumb {
+  overflow: hidden;
+}
+

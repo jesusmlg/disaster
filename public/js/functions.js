@@ -4,6 +4,11 @@ $(document).ready(function(){
 		height: 300,
 	});
 
+	$(document).on('click','#txt',function(e){
+		if(e.wich == 13)
+			$('form-search').submit();
+	});
+
 	$(document).on('click','#btn-add-tag',function(e){
 		
 		e.preventDefault();				
