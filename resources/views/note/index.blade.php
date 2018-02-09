@@ -13,21 +13,32 @@
 {{ Form::Close() }}
 
     <h2>Notes List</h2>
-
+    	<p><b>Total Files: </b> {{ $notes->count() }}</p>
+    	<div class="text-center">{{ $notes->links() }}</div>
+		<table class="table table-notes">
+			<tr>
+				<th>Adj</th>
+				<th>Title</th>
+				<th>Text</th>			
+				<th>Created</th>
+				<th>Modified</th>			
+			</tr>
+		
     		@foreach($notes as $note)
-    			<div class="col-md-2 text-center mythumb">
-    				<div class="thumbnail">
-
-    					<a href="{{ route('note_show',['id' => $note->id]) }}">
-    					
-    					<img src="{{ asset('images/file.png') }}" class="img-responsive" >
+    		<tr>
+    			<td class="list-note-adj">@if(count($note->files)) <img src="{{ asset('images/file.png')}}" class="img-32 img-responsive"> @endif</td>
+    			<td class="list-note-title">
+    				<a href="{{ route('note_show',['id' => $note->id]) }}">
     					{{ $note->title }}
     				</a>
-    				</div>
-    				
-    				
-    			</div>
+    			</td>
+    			<td class="list-note-text">{{ $note->note }}</td>
+    			<td class="list-note-date">{{ $note->created_at }}</td>
+    			<td class="list-note-date">{{ $note->updated_at }}</td>    			
+    		</tr>    			
     		@endforeach
+		</table>
 
+		<div class="text-center">{{ $notes->links() }}</div>
 
 @endsection

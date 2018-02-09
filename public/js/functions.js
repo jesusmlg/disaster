@@ -9,6 +9,32 @@ $(document).ready(function(){
 			$('form-search').submit();
 	});
 
+	$(document).on('click','.delete-tag',function(e){
+		e.preventDefault();
+		url = $(this).attr('data-url');
+		
+		$.ajax({
+			url: url,
+			type:'delete',				
+			dataType: 'json',
+			data: {
+				'_method': 'delete',
+				'_token': $('meta[name="csrf-token"]').attr('content')
+			},
+			success: function(data){
+				$("#note-tags").html(data.html);
+			},
+			error: function(data){
+				alert("error");
+			},
+			complete:function(data)
+			{
+				
+			}
+		});
+
+	});
+
 	$(document).on('click','#btn-add-tag',function(e){
 		
 		e.preventDefault();				

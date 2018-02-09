@@ -29,7 +29,10 @@ Route::middleware('auth')->group(function()
     Route::post('/note/create','NoteController@create')->name('note_create');
     Route::delete('note/{id}/destroy','NoteController@destroy')->name('note_destroy');
 
+    Route::delete('/note/{note_id}/tag/{tag_id}/destroy','TagController@destroyNoteTag')->name('note_tag_destroy');
+
     Route::post('tag/create','TagController@create')->name('tag_create');
+    Route::post('/note/{id}/destroy','NoteController@destroy')->name('tag_destroy');
 
 });
 

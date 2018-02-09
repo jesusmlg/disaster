@@ -8,6 +8,7 @@ use \App\Models\Note;
 use \App\Models\File;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use \App\Http\Requests\NotesRequest;
 
 class NoteController extends Controller
 {
@@ -18,13 +19,22 @@ class NoteController extends Controller
         return view('note.new',['note' => $note]);
     }
 
+    public function edit(Request $request,$id)
+    {
+        $note = Note::find($id);
+
+        return view('note.edit',['note' => $note]);
+    }
+
     public function index(Request $request)
     {
         
         if($request->txt)
             $notes = Note::search($request->txt);
         else
-            $notes = Note::all();
+            $notes = Note::orderBy('created_at', 'desc')->paginate(20);
+        
+
         return view('note.index',['notes'=> $notes]);
     }
 
@@ -35,7 +45,7 @@ class NoteController extends Controller
         return view('note.show',['note' => $note]);
     }
 
-    public function create(Request $request)
+    public function create(NotesRequest $request)
     {
         $note = new Note();
 

@@ -30,4 +30,17 @@ class TagController extends Controller
     	//return redirect()->route('note_show',['note' => $note]);
 
     }
+
+    public function destroyNoteTag(Request $request,$note_id,$tag_id)
+    {
+        $note = Note::find($note_id);
+        $note->tags()->detach($tag_id);
+        
+        if($request->ajax())
+        {
+            $html = view('tag._tags-note',['note' => $note])->render();
+            return response()->json(['message' => 'ok', 'html' => $html]);
+        }
+
+    }
 }

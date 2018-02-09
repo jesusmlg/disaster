@@ -8,18 +8,16 @@
 {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
 {!! Form::close() !!}
 <p>&nbsp;</p>
-<p>
-	Add Tag: <input type="text" name="tag" id="txt-tag"> 
-	<input type="hidden" name="note_id" id="note_id" value="{{ $note->id }}">
-	<a href="#" class="btn btn-info" id="btn-add-tag">Add</a>
-</p>
-<p class="table-bordered" id="note-tags">
-	@include('tag._tags-note')
-</p>
 
-<p>
-	@include('file._files-notes')
-</p>
+<div class="divTable">
+    <div class="divTableBody">
+        <div class="divTableRow">
+            <div class="divTableCell">@include('tag._tags-note')</div>
+            <div class="divTableCellSeparator"></div>
+            <div class="divTableCell">@include('file._files-notes')</div>
+        </div>
+    </div>
+</div>
 
 <p class="text-justify">
 	{!! $note->note !!}

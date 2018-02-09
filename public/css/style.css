@@ -1,21 +1,92 @@
+a{
+	color: #EB7215;
+}
 .summernote{
     width: 100%;
  }   
  .input-group{
     margin-bottom: 20px;
  }
- .btn-green{
-    background-color: #03A200;
-    border: 1px solid #03A200;
+ .btn-primary, .btn-primary:link, .btn-primary:active, .btn-primary:visited, .btn-primary:active:focus {
+    background-color: #EB7215;
+    border: 1px solid #EB7215;
     font-weight: bold;
  }
- .btn-green:hover{
-    background-color: #087E05;  
+ .btn-primary:hover{
+ 	background-color: #FFB073;
+ 	border: 1px solid #FFB073;
+    font-weight: bold;
  }
+ 
  #search-icon:hover{
     cursor: hand;
  }
- .thumbnail{
+ .list-note-text{
+ 	
+   	max-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
     white-space: nowrap;
-   text-overflow: ellipsis;
  }
+ .list-note-date{
+	width: 10%;
+ }
+ .list-note-title{
+	width: 25%;
+ }
+ .list-note-adj{
+ 	width: 5%;	
+ }
+ .img-32{
+ 	width: 16px;
+ }
+ .table{
+ 	width: 100%;
+ 	font-size: 13px;
+ }
+.table-notes th{
+	background-color: #FADEC3;
+}
+
+.table-notes tr:hover{
+	background-color: #FADEC3; 
+}
+.pagination > .active > span{
+	background-color: #EB7215;
+	border-color: #EB7215;
+}
+.pagination > li > a{
+	color: #EB7215;
+}
+.glyphicon-remove{
+	color: #FF0707;
+	cursor: pointer;
+	vertical-align: middle;
+}
+
+.divTable{
+	display: table;
+	width: 100%;
+	margin-bottom: 30px;
+}
+.divTableRow {
+	display: table-row;
+	width: 100%;
+}
+
+.divTableCell {
+	border: 1px solid #ccd0d2;
+	border-radius: 10px;
+	display: table-cell;
+	padding: 3px 10px;
+	margin-right: 150px;
+	width: 48%;
+
+}
+.divTableCellSeparator{
+	width: 4%;
+}
+
+.divTableBody {
+	display: table-row-group;
+}
