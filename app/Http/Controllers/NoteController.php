@@ -59,8 +59,9 @@ class NoteController extends Controller
         {
             foreach ($request->attachments as $attachment) 
             {
+                $path = "files/".Auth::user()->id."/".date('Y')."/". date('j');
                 //Storage::put('files/'.$file->getClientOriginalName(),$file);
-                if($url = $attachment->storeAs('files',$attachment->getClientOriginalName()))
+                if($url = $attachment->storeAs($path,$attachment->getClientOriginalName()))
                 {
                     $file = \App\Models\File::create(['url' => $url]);
                     $note->files()->save($file);
