@@ -7,8 +7,17 @@
     <span class="input-group-addon">{{ Form::label('File:')}}</span>
      {{ Form::file('attachments[]',['multiple' => 'multiple', 'class' => 'form-control']) }}
     {{-- <input type="file" name="attachments[]" id="attachments" multiple="true"> --}}
-</div>     
+</div>  
 
+<div class="input-group">
+    <span class="input-group-addon">{{ Form::label('Tag:')}}</span>
+     <input type="text" name="tag" id="txt-tag" class="form-control">      
+     <input type="hidden" name="note_id" id="note_id" value="{{ $note->id }}" class="form-control">           
+    {{-- <input type="file" name="attachments[]" id="attachments" multiple="true"> --}}
+    <a href="#" class="btn btn-info form-control" id="btn-add-tag">Add Tag</a>
+</div>  
+
+                    
 <div class="divTable">
     <div class="divTableBody">
         <div class="divTableRow">

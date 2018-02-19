@@ -27,6 +27,7 @@ Route::middleware('auth')->group(function()
     Route::get('/note/{id}/show','NoteController@show')->name('note_show');
     Route::get('/note/{id}/edit','NoteController@edit')->name('note_edit');
     Route::post('/note/create','NoteController@create')->name('note_create');
+    Route::post('/note/{id}/update','NoteController@update')->name('note_update');
     Route::delete('note/{id}/destroy','NoteController@destroy')->name('note_destroy');
 
     Route::delete('/note/{note_id}/tag/{tag_id}/destroy','TagController@destroyNoteTag')->name('note_tag_destroy');

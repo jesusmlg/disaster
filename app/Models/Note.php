@@ -44,6 +44,7 @@ class Note extends Model
                 ->where('notes.title','ilike','%'.$txt.'%')
                 ->orWhere('tags.name','ilike','%'.$txt.'%')
                 ->orWhere('files.url','ilike','%'.$txt.'%')
+                ->orWhere('notes.note','ilike','%'.$txt.'%')
                 ->orderBy('notes.created_at', 'desc')
                 ->paginate(20);
     

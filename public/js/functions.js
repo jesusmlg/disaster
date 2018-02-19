@@ -66,4 +66,31 @@ $(document).ready(function(){
 
 		});
 	});
+
+	$(document).on('click','.delete-file',function(e){
+		e.preventDefault();
+		url = $(this).attr('data-url');
+		
+		$.ajax({
+			url: url,
+			type:'delete',				
+			dataType: 'json',
+			data: {
+				'_method': 'delete',
+				'_token': $('meta[name="csrf-token"]').attr('content')
+			},
+			success: function(data){
+				$("#note-files").html(data.html);
+			},
+			error: function(data){
+				alert("error");
+			},
+			complete:function(data)
+			{
+				
+			}
+		});
+
+	});
+
 });

@@ -75,9 +75,42 @@ class NoteController extends Controller
         return redirect()->route('note_show',['note' => $note]);
     }
 
+    public function update(Request $request, $id)
+    {
+        $note = Note::find($id);
+
+        $note->fill(
+            $request->only('title','note')
+        );
+
+        if($note->save())
+        {
+            foreach ($request->attachments as $attachment) 
+            {
+                $path = "files/".Auth::user()->id."/".date('Y')."/". date('j');
+
+                if($url = $attachment->storeAs($path,$attachment->getClientOriginalName()))
+                {
+                    $file = \App\Models\File::create(['url' => $url]);
+                    $note->files()->save($file);
+                }
+            }
+        }    
+
+        return redirect()->route('note_edit',['note' => $note]);
+
+    }
+
     public function destroy($id)
     {
+        $note = Note::find($id);
+
+        foreach ($note->files as $f) 
+        {
+            Storage::delete($f->url);
+        }
         Note::destroy($id);
+
 
         return redirect()->route('note_index');
     }

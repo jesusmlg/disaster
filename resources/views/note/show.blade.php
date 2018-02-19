@@ -4,9 +4,6 @@
 
 <img src="{{ asset('images/file.png')}}">
 <a href="{{ route('note_edit',['id' => $note->id]) }}" class="btn btn-primary">Edit</a> 
-{!! Form::open(['method' => 'DELETE','route' => ['note_destroy', $note->id],'onsubmit' => 'return confirm("are you sure ?")','style'=>'display:inline']) !!}
-{!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-{!! Form::close() !!}
 <p>&nbsp;</p>
 
 <div class="divTable">
