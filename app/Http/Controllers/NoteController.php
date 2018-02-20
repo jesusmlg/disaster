@@ -12,11 +12,12 @@ use \App\Http\Requests\NotesRequest;
 
 class NoteController extends Controller
 {
+
+    
     public function new()
     {
         $note = new Note();
-        //$tag = new Tag();
-        return view('note.new',['note' => $note]);
+        return view('note.new',['note' => $note]);        
     }
 
     public function edit(Request $request,$id)
@@ -57,21 +58,18 @@ class NoteController extends Controller
 
         if($note->save())
         {
-            foreach ($request->attachments as $attachment) 
-            {
-                $path = "files/".Auth::user()->id."/".date('Y')."/". date('j');
-                //Storage::put('files/'.$file->getClientOriginalName(),$file);
-                if($url = $attachment->storeAs($path,$attachment->getClientOriginalName()))
-                {
-                    $file = \App\Models\File::create(['url' => $url]);
-                    $note->files()->save($file);
-                }
-            }
+            $this->saveFiles($request,$note);
+            // foreach ($request->attachments as $attachment) 
+            // {
+            //     //$path = "/public/files/".Auth::user()->id."/".date('Y')."/". date('j');
+            //     //Storage::put('files/'.$file->getClientOriginalName(),$file);
+            //     if($url = $attachment->storeAs($path,$attachment->getClientOriginalName()))
+            //     {
+            //         $file = \App\Models\File::create(['url' => $url]);
+            //         $note->files()->save($file);
+            //     }
+            // }
         }                
-
-
-        
-
         return redirect()->route('note_show',['note' => $note]);
     }
 
@@ -85,16 +83,15 @@ class NoteController extends Controller
 
         if($note->save())
         {
-            foreach ($request->attachments as $attachment) 
-            {
-                $path = "files/".Auth::user()->id."/".date('Y')."/". date('j');
-
-                if($url = $attachment->storeAs($path,$attachment->getClientOriginalName()))
-                {
-                    $file = \App\Models\File::create(['url' => $url]);
-                    $note->files()->save($file);
-                }
-            }
+            $this->saveFiles($request,$note);
+            // foreach ($request->attachments as $attachment) 
+            // {                
+            //     if($url = $attachment->storeAs($this->path,$attachment->getClientOriginalName()))
+            //     {
+            //         $file = \App\Models\File::create(['url' => $url]);
+            //         $note->files()->save($file);
+            //     }
+            // }
         }    
 
         return redirect()->route('note_edit',['note' => $note]);
@@ -113,5 +110,20 @@ class NoteController extends Controller
 
 
         return redirect()->route('note_index');
+    }
+
+    private function saveFiles(Request $request, $note)
+    {
+        $path = "/public/files/".Auth::user()->id."/".date('Y')."/". date('n');
+
+        foreach ($request->attachments as $attachment) 
+            {                
+                //Storage::put('files/'.$file->getClientOriginalName(),$file);
+                if($url = $attachment->storeAs($path,$attachment->getClientOriginalName()))
+                {
+                    $file = \App\Models\File::create(['url' => $url]);
+                    $note->files()->save($file);
+                }
+            }
     }
 }

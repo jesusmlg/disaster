@@ -32,6 +32,8 @@ Route::middleware('auth')->group(function()
 
     Route::delete('/note/{note_id}/tag/{tag_id}/destroy','TagController@destroyNoteTag')->name('note_tag_destroy');
 
+    Route::delete('/note/{note_id}/file/{file_id}/destroy','FileController@destroyNoteFile')->name('note_file_destroy');
+
     Route::post('tag/create','TagController@create')->name('tag_create');
     Route::post('/note/{id}/destroy','NoteController@destroy')->name('tag_destroy');
 

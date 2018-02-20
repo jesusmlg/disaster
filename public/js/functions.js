@@ -69,8 +69,9 @@ $(document).ready(function(){
 
 	$(document).on('click','.delete-file',function(e){
 		e.preventDefault();
+
 		url = $(this).attr('data-url');
-		
+		alert(url);
 		$.ajax({
 			url: url,
 			type:'delete',				
