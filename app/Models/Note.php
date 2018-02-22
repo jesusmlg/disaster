@@ -49,6 +49,7 @@ class Note extends Model
                 ->paginate(20);
     
     }
+    
 
     public function getCreatedAtAttribute($value)
     {

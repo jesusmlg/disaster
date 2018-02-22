@@ -4,18 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use \App\Models\Note;
-//use \App\Models\Tag;
+use \App\Models\Tag;
 use \App\Models\File;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use \App\Http\Requests\NotesRequest;
 
 class NoteController extends Controller
-{
-
-    
+{    
     public function new()
-    {
+    {        
         $note = new Note();
         return view('note.new',['note' => $note]);        
     }
@@ -29,14 +27,22 @@ class NoteController extends Controller
 
     public function index(Request $request)
     {
-        
+        $lastTags = Tag::orderBy('created_at','desc')->take(20)->get();   
+        $mostUsedTags = Tag::mostUsed()->take(20)->get();
+
+        $total = Note::all()->count();
+
         if($request->txt)
             $notes = Note::search($request->txt);
+        elseif($request->tag)
+            $notes = Note::whereHas('tags', function($q) use ($request){
+                $q->where('name', $request->tag);
+            })->paginate(20);
         else
             $notes = Note::orderBy('created_at', 'desc')->paginate(20);
         
 
-        return view('note.index',['notes'=> $notes]);
+        return view('note.index',['notes'=> $notes, 'total' => $total, 'lastTags' => $lastTags, 'mostUsedTags' => $mostUsedTags]);
     }
 
     public function show($id)

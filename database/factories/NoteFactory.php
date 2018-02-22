@@ -8,6 +8,6 @@ $factory->define(App\Models\Note::class, function (Faker $faker) {
         'note' => $faker->text(),
         'user_id' => function() {
             return factory(App\User::class)->create()->id;
-        },
+        },        
     ];
 });

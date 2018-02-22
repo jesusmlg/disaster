@@ -8,6 +8,13 @@ use \App\Models\Note;
 
 class TagController extends Controller
 {
+    public function index(Request $request)
+    {
+        $tags = Tag::orderBy('name','asc')->paginate(100);
+
+        return view('tag.index',['tags' => $tags]);
+    }
+
     public function create(Request $request)
     {
         $tag = new Tag();

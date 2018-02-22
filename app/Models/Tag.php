@@ -12,4 +12,14 @@ class Tag extends Model
     {
         return $this->belongsToMany('Note', 'notes_tags');
     }
+
+    public static function mostUsed()
+    {
+
+    	return Tag::whereIn('id', function($q){
+    		$q->select(\DB::raw('nt.tag_id from notes_tags nt group by nt.tag_id order by count(nt.note_id) desc'));
+    	});
+
+
+    }
 }

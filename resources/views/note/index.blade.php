@@ -11,9 +11,26 @@
 	</div>
 	
 {{ Form::Close() }}
+	<div id="last-tags" class="panel panel-default" style="padding: 4px 5px 4px 5px">
+		
+		<a href="{{ route('tag_index') }}">Show All Tags </a>
+		<p>
+			Last tags: 
+			@foreach ($lastTags as $tag)
+				<a href="{{ route('note_index',['tag' => $tag->name]) }}" class="btn btn-info btn-xs">{{ $tag->name }}</a>
+			@endforeach
+		</p>
+		<p>
+			Most Used tags: 
+			@foreach ($mostUsedTags as $tag)
+				<a href="{{ route('note_index',['tag' => $tag->name]) }}" class="btn btn-info btn-xs">{{ $tag->name }}</a>
+			@endforeach
+		</p>
+		 
+	</div>
 
     <h2>Notes List</h2>
-    	<p><b>Total Files: </b> {{ $notes->count() }}</p>
+    	<p><b>Total Files: </b> {{ $total }}</p>
     	<div class="text-center">{{ $notes->links() }}</div>
 		<table class="table table-notes">
 			<tr>
@@ -32,7 +49,7 @@
     					{{ $note->title }}
     				</a>
     			</td>
-    			<td class="list-note-text">{{ $note->note }}</td>
+    			<td class="list-note-text">{!!$note->note !!}</td>
     			<td class="list-note-date">{{ $note->created_at }}</td>
     			<td class="list-note-date">{{ $note->updated_at }}</td>    			
     		</tr>    			
