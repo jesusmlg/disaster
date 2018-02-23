@@ -64,7 +64,8 @@ class NoteController extends Controller
 
         if($note->save())
         {
-            $this->saveFiles($request,$note);
+            if($request->hasFile('attachsments'))
+                $this->saveFiles($request,$note);
             // foreach ($request->attachments as $attachment) 
             // {
             //     //$path = "/public/files/".Auth::user()->id."/".date('Y')."/". date('j');
@@ -76,7 +77,7 @@ class NoteController extends Controller
             //     }
             // }
         }                
-        return redirect()->route('note_show',['note' => $note]);
+        return redirect()->route('note_edit',['note' => $note]);
     }
 
     public function update(Request $request, $id)
@@ -89,7 +90,8 @@ class NoteController extends Controller
 
         if($note->save())
         {
-            $this->saveFiles($request,$note);
+            if($request->hasFile('attachsments'))
+                $this->saveFiles($request,$note);
             // foreach ($request->attachments as $attachment) 
             // {                
             //     if($url = $attachment->storeAs($this->path,$attachment->getClientOriginalName()))

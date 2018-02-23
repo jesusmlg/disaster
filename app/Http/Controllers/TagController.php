@@ -17,13 +17,13 @@ class TagController extends Controller
 
     public function create(Request $request)
     {
-        $tag = new Tag();
+        $tag = Tag::firstOrNew(['name' => $request->tag]);
         
         $note = Note::find($request->note_id);
 
-        $tag->fill([
-            'name' => $request->tag
-        ]); 
+        // $tag->fill([
+        //     'name' => $request->tag
+        // ]); 
 
     	if($note->tags()->save($tag))
     		session()->flash('message','Tag saved succesfully');

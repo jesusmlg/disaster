@@ -15,13 +15,13 @@
 		
 		<a href="{{ route('tag_index') }}">Show All Tags </a>
 		<p>
-			Last tags: 
+			Last tags:&emsp;&emsp;&emsp;&emsp;
 			@foreach ($lastTags as $tag)
 				<a href="{{ route('note_index',['tag' => $tag->name]) }}" class="btn btn-info btn-xs">{{ $tag->name }}</a>
 			@endforeach
 		</p>
 		<p>
-			Most Used tags: 
+			Most Used tags:&emsp;
 			@foreach ($mostUsedTags as $tag)
 				<a href="{{ route('note_index',['tag' => $tag->name]) }}" class="btn btn-info btn-xs">{{ $tag->name }}</a>
 			@endforeach
@@ -49,7 +49,11 @@
     					{{ $note->title }}
     				</a>
     			</td>
-    			<td class="list-note-text">{!!$note->note !!}</td>
+    			<td class="list-note-text">
+    				<a href="{{ route('note_show',['id' => $note->id]) }}">
+    					{!!$note->note !!}
+    				</a>
+    			</td>    				
     			<td class="list-note-date">{{ $note->created_at }}</td>
     			<td class="list-note-date">{{ $note->updated_at }}</td>    			
     		</tr>    			

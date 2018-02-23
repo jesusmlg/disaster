@@ -22,16 +22,16 @@ class DatabaseSeeder extends Seeder
         ]);
 
         factory(\App\Models\Note::class,50)->create();
-        factory(\App\Models\Tag::class,100)->create();
+        // factory(\App\Models\Tag::class,100)->create();
 
-        $noteids = \App\Models\Note::pluck('id')->all();
-        $tagids = \App\Models\Tag::pluck('id')->all();
+        // $noteids = \App\Models\Note::pluck('id')->all();
+        // $tagids = \App\Models\Tag::pluck('id')->all();
 
-        for ($i=0; $i < 100 ; $i++) { 
-            DB::table('notes_tags')->insert([
-                'note_id' => $faker->randomElement($noteids),
-                'tag_id' => $faker->randomElement($tagids)
-            ]);
-        }
+        // for ($i=0; $i < 100 ; $i++) { 
+        //     DB::table('notes_tags')->insert([
+        //         'note_id' => $faker->randomElement($noteids),
+        //         'tag_id' => $faker->randomElement($tagids)
+        //     ]);
+        // }
     }
 }

@@ -15,13 +15,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/', 'NoteController@index');
+
 Auth::routes();
 
-Route::get('/home', 'NoteController@index')->name('home');
 
 Route::middleware('auth')->group(function()
 {
+    Route::get('/', 'NoteController@index');
+	Route::get('/home', 'NoteController@index')->name('home');
     Route::get('/notes','NoteController@index')->name('note_index');
     Route::get('/note/new','NoteController@new')->name('note_new');
     Route::get('/note/{id}/show','NoteController@show')->name('note_show');

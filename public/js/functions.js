@@ -52,7 +52,6 @@ $(document).ready(function(){
 			data: data,
 			success: function(data)
 			{
-				alert('ok');
 				$("#note-tags").html(data.html);
 			},
 			error: function(data)

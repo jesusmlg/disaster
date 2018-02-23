@@ -36,6 +36,21 @@
 
                     <ul class="dropdown-menu">
                         <li>
+                            <a href="{{ route('note_index') }}">Notes</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('note_new') }}">New Note</a>
+                        </li>
+                        <li>
+                            <hr>
+                        </li>
+                        <li>
+                            <a href="{{ route('tag_index') }}">All Tags</a>
+                        </li>
+                        <li>
+                            <hr>
+                        </li>                            
+                        <li>
                             <a href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                          document.getElementById('logout-form').submit();">

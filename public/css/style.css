@@ -90,3 +90,11 @@ a{
 .divTableBody {
 	display: table-row-group;
 }
+.dropdown-menu li hr
+{
+	margin-top: 4px;
+	margin-bottom: 4px;
+}
+#note-tags, #files-tags li{
+	list-style: none;
+}
