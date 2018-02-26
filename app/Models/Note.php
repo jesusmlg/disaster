@@ -72,4 +72,15 @@ class Note extends Model
         return \Carbon\Carbon::parse($this->attributes['created_at']);
     }
 
+    public function  getIconAttribute()
+    {
+        if ($this->files()->count()>0)
+            $img = $this->files()->first()->icon;
+        else
+            $img = 'images/icons/note.png';
+
+        return $img;
+
+    }
+
 }

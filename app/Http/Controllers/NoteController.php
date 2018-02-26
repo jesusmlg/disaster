@@ -40,9 +40,9 @@ class NoteController extends Controller
             })->paginate(20);
         else
             $notes = Note::orderBy('created_at', 'desc')->paginate(20);
-        
 
-        return view('note.index',['notes'=> $notes, 'total' => $total, 'lastTags' => $lastTags, 'mostUsedTags' => $mostUsedTags]);
+
+        return view('note.index',['notes'=> $notes, 'total' => $total, 'lastTags' => $lastTags, 'mostUsedTags' => $mostUsedTags, 'view' => $request->view ]);
     }
 
     public function show($id)
@@ -64,7 +64,7 @@ class NoteController extends Controller
 
         if($note->save())
         {
-            if($request->hasFile('attachsments'))
+            if($request->hasFile('attachments'))
                 $this->saveFiles($request,$note);
             // foreach ($request->attachments as $attachment) 
             // {
@@ -90,7 +90,7 @@ class NoteController extends Controller
 
         if($note->save())
         {
-            if($request->hasFile('attachsments'))
+            if($request->hasFile('attachments'))
                 $this->saveFiles($request,$note);
             // foreach ($request->attachments as $attachment) 
             // {                

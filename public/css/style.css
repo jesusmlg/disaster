@@ -43,9 +43,23 @@ a{
  .table{
  	width: 100%;
  	font-size: 13px;
+ 	border-collapse: collapse;
  }
+ .table-notes{
+ 	/*border: 1px solid #666666;*/
+
+ }
+1
+ .table-notes th:first-child {
+
+}
+.table-notes th:last-child {
+
+}
 .table-notes th{
-	background-color: #FADEC3;
+	background-color: #E46A00;
+	color: #FFF;
+	font-weight: bold;
 }
 
 .table-notes tr:hover{
@@ -95,6 +109,18 @@ a{
 	margin-top: 4px;
 	margin-bottom: 4px;
 }
-#note-tags, #files-tags li{
+#note-tags, #note-files li{
 	list-style: none;
+}
+.grid-notes{
+	text-align: center;
+	margin-bottom: 20px;
+}
+.grid-notes img{
+	width: 64px;
+}
+
+.img-small{
+	width: 32px;
+	border: none;
 }

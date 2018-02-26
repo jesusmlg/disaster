@@ -26,6 +26,7 @@ class NotesRequest extends FormRequest
         return [
             'title' => 'required|max:255',
             'note' => 'required',
+            'attachments.*' => 'max:8000',
 
         ];
     }
