@@ -14,8 +14,8 @@ class CreateTableNotesTags extends Migration
     public function up()
     {
         Schema::create('notes_tags', function (Blueprint $table) {            
-            $table->integer('note_id');
-            $table->integer('tag_id');
+            $table->integer('note_id')->unsigned();
+            $table->integer('tag_id')->unsigned();
             
             $table->foreign('note_id')->references('id')->on('notes')->onDelete('cascade');
             $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');

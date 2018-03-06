@@ -17,10 +17,12 @@ class CreateNotes extends Migration
             $table->increments('id');
             $table->string('title');
             $table->text('note');
-            $table->integer('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('user_id')->unsigned();
             $table->integer('visits')->default(0);
             $table->datetime('last_visit')->default(DB::raw('CURRENT_TIMESTAMP'));            
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

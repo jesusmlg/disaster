@@ -14,8 +14,8 @@ class CreateNotesFiles extends Migration
     public function up()
     {
         Schema::create('notes_files', function (Blueprint $table) {
-            $table->integer('note_id');            
-            $table->integer('file_id');
+            $table->integer('note_id')->unsigned();            
+            $table->integer('file_id')->unsigned();
 
             $table->foreign('note_id')->references('id')->on('notes')->onDelete('cascade');
             $table->foreign('file_id')->references('id')->on('files')->onDelete('cascade');
