@@ -31,6 +31,10 @@ class NoteController extends Controller
         $mostUsedTags = Tag::mostUsed()->take(20)->get();
 
         $total = Note::all()->count();
+        
+
+        if($request->view != "")
+            session(['view' => $request->view ]);
 
         if($request->txt)
             $notes = Note::search($request->txt);
@@ -42,7 +46,7 @@ class NoteController extends Controller
             $notes = Note::orderBy('created_at', 'desc')->paginate(20);
 
 
-        return view('note.index',['notes'=> $notes, 'total' => $total, 'lastTags' => $lastTags, 'mostUsedTags' => $mostUsedTags, 'view' => $request->view ]);
+        return view('note.index',['notes'=> $notes, 'total' => $total, 'lastTags' => $lastTags, 'mostUsedTags' => $mostUsedTags]);
     }
 
     public function show($id)

@@ -36,18 +36,28 @@ class Note extends Model
      //        ->orWhere('files.url','ilike','%'.$txt.'%')
      //        ->orderBy('notes.created_at', 'desc')
      //        ->get();
-        return Note::select('notes.*')
+        $tags = explode(" ", $txt);
+
+        $notes = Note::select('notes.*')
                 ->leftJoin('notes_tags','notes.id','=','notes_tags.note_id')
                 ->leftJoin('tags','tags.id','=','notes_tags.tag_id')
                 ->leftJoin('notes_files','notes.id','=','notes_files.note_id')
                 ->leftJoin('files','files.id','=','notes_files.file_id')
                 ->where('notes.title','ilike','%'.$txt.'%')
-                ->orWhere('tags.name','ilike','%'.$txt.'%')
                 ->orWhere('files.url','ilike','%'.$txt.'%')
                 ->orWhere('notes.note','ilike','%'.$txt.'%')
+                //->orWhere('tags.name','ilike','%'.$txt.'%')
+                ->orWhere(function($query) use ($tags){
+                    foreach($tags as $t) {
+                        $query->orWhere('tags.name','ilike','%'.$t.'%');
+                        }
+                    }
+                )
                 ->orderBy('notes.created_at', 'desc')
                 ->paginate(20);
-    
+        
+        return $notes;
+        
     }
     
 

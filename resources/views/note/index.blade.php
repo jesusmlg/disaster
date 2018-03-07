@@ -30,12 +30,18 @@
 	</div>
 
     <h2>Notes List</h2>
+    	<p class="text-right">
+    		<a href="{{ route('note_index',['view' => 'details']) }}" class="btn btn-info">Details</a>  
+    		<a href="{{ route('note_index',['view' => 'grid']) }}" class="btn btn-info">Grid</a>
+    	</p>
     	<p><b>Total Files: </b> {{ $total }}</p>
-    	<div class="text-center">{{ $notes->links() }}</div>		
-		@if ($view == "details")
+    	<div class="text-center">{{ $notes->links() }}</div>	
+
+		@if (Session::get('view') == "details")
 			@include('note._details')
 		@else
 			@include('note._grid')
 		@endif
+
 		<div class="text-center">{{ $notes->links() }}</div>		
 @endsection

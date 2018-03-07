@@ -2,7 +2,6 @@
 @section('content')
 <h2>{{ $note->title  }}</h2>
 
-<img src="{{ asset('images/file.png')}}">
 <a href="{{ route('note_edit',['id' => $note->id]) }}" class="btn btn-primary">Edit</a> 
 <p>&nbsp;</p>
 
