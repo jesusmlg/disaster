@@ -39,7 +39,7 @@ class File extends Model
         switch ($ext) {
             case 'doc':
             case 'docx':
-                $img = 'word.png';
+                $img = 'doc_1.png';
                 break;
             case 'xls':
             case 'xlsx':
@@ -48,11 +48,13 @@ class File extends Model
             case 'jpg':
             case 'jpeg':
             case 'png':
-            case 'gif':
             case 'tiff':
             case 'bmp':
-                $img = 'img.png';
+                $img = 'jpg.png';
                 break;  
+            case 'gif':
+                $img = 'gif.png';
+                break; 
             case 'pdf':
                 $img = 'pdf.png';
                 break; 
@@ -61,10 +63,10 @@ class File extends Model
             case "7z":
             case "tar":
             case "bzip":
-                $img = 'compress.png';
+                $img = 'zip.png';
                 break;
             default:
-                $img = 'note.png';
+                $img = 'txt_1.png';
                 break;
         }
 

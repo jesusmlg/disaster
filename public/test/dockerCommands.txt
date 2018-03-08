@@ -1,0 +1,5 @@
+docker-compose up
+docker-compose down
+docker-compose stop
+docker-compose start
+docker exec -it <mycontainer> bash <-- acceder dentro del container
