@@ -38,6 +38,7 @@ Route::middleware('auth')->group(function()
     Route::post('tag/create','TagController@create')->name('tag_create');
     Route::post('/note/{id}/destroy','NoteController@destroy')->name('tag_destroy');
     Route::get('/tags','TagController@index')->name('tag_index');
+    Route::get('/tag/list','TagController@list')->name('tag_list');
 
 });
 

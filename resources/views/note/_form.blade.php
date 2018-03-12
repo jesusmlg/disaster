@@ -11,11 +11,11 @@
     <div class="input-group">
         <span class="input-group-addon">{{ Form::label('Tag:')}}</span>
          <input type="text" name="tag" id="txt-tag" class="form-control">      
-         <input type="hidden" name="note_id" id="note_id" value="{{ $note->id }}" class="form-control">           
-        {{-- <input type="file" name="attachments[]" id="attachments" multiple="true"> --}}
+         <input type="hidden" name="note_id" id="note_id" value="{{ $note->id }}" class="form-control">          
         <a href="#" class="btn btn-info form-control" id="btn-add-tag">Add Tag</a>
-    </div>  
 
+    </div>  
+    <div id="tag-list"></div>    
                     
     <div class="divTable">
         <div class="divTableBody">

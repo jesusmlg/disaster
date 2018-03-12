@@ -67,8 +67,7 @@ $(document).ready(function(){
 	});
 
 	$(document).on('click','.delete-file',function(e){
-		e.preventDefault();
-
+		e.preventDefault();		
 		url = $(this).attr('data-url');
 		alert(url);
 		$.ajax({
@@ -93,4 +92,40 @@ $(document).ready(function(){
 
 	});
 
+	$(document).on('input propertychange paste','#txt-tag', function(e){
+		var pos = $('#txt-tag').position();
+		
+		$('#tag-list').css({'top': pos.top - 20, 'left': pos.left });
+
+		$.ajax({
+			url: '/tag/list',
+			dataType: 'json',
+			data: {'txt' : $(this).val() },
+			method: 'get',
+			success: function(data)
+			{
+				$("#tag-list").html(data.html);
+				
+			},
+			error: function(data)
+			{
+				alert("error");
+			}
+
+
+		});
+	});
+
+	$(document).on('click','#tag-list ul li',function(e){
+		var txt = $(this).html();
+		var tags = $('#txt-tag').val();
+
+		alert(tags);
+		
+
+		tags += "," + txt;
+		alert(tags);
+		$('#txt-tag').val(tags);
+	});
+	
 });

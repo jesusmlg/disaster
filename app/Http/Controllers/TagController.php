@@ -16,17 +16,18 @@ class TagController extends Controller
     }
 
     public function create(Request $request)
-    {
-        $tag = Tag::firstOrNew(['name' => $request->tag]);
-        
+    {        
         $note = Note::find($request->note_id);
 
-        // $tag->fill([
-        //     'name' => $request->tag
-        // ]); 
+        $tags = explode(",", $request->tag);
 
-    	if($note->tags()->save($tag))
-    		session()->flash('message','Tag saved succesfully');
+        foreach ($t as $tags)
+        {
+            $tag = Tag::firstOrNew(['name' => $t]);
+            if($note->tags()->save($tag))
+                session()->flash('message','Tag saved succesfully');
+        }
+    	
 
         if($request->ajax())
         {
@@ -49,5 +50,21 @@ class TagController extends Controller
             return response()->json(['message' => 'ok', 'html' => $html]);
         }
 
+    }
+
+    public function list(Request $request)
+    {
+        if($request->ajax())
+        {
+            $tags = Tag::where('name','ilike', '%'.$request->txt.'%')->get();
+            $html='<ul>';
+            foreach ($tags as $tag) 
+            {
+                $html.='<li>'. $tag->name.'</li>';
+            }
+            $html.='</ul>';
+
+            return response()->json(['message' => 'ok', 'html' => $html]);
+        }
     }
 }
