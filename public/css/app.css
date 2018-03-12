@@ -8588,3 +8588,16 @@ a {
   border: none;
 }
 
+.btn-xs,
+.btn-group-xs > .btn {
+  margin-bottom: 3px;
+}
+
+.logo_small {
+  width: 38px;
+}
+
+.logo-main {
+  margin: 0 auto;
+}
+

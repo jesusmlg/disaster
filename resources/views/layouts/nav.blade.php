@@ -12,7 +12,7 @@
 
         <!-- Branding Image -->
         <a class="navbar-brand" href="{{ url('/') }}">
-            Disaster by jmlg
+            <img src="{{ asset('images/logos/logo_small.png') }}" class="img-responsive logo_small">
         </a>
     </div>
 
