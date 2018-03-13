@@ -70,16 +70,6 @@ class NoteController extends Controller
         {
             if($request->hasFile('attachments'))
                 $this->saveFiles($request,$note);
-            // foreach ($request->attachments as $attachment) 
-            // {
-            //     //$path = "/public/files/".Auth::user()->id."/".date('Y')."/". date('j');
-            //     //Storage::put('files/'.$file->getClientOriginalName(),$file);
-            //     if($url = $attachment->storeAs($path,$attachment->getClientOriginalName()))
-            //     {
-            //         $file = \App\Models\File::create(['url' => $url]);
-            //         $note->files()->save($file);
-            //     }
-            // }
         }                
         return redirect()->route('note_edit',['note' => $note]);
     }
@@ -96,14 +86,7 @@ class NoteController extends Controller
         {
             if($request->hasFile('attachments'))
                 $this->saveFiles($request,$note);
-            // foreach ($request->attachments as $attachment) 
-            // {                
-            //     if($url = $attachment->storeAs($this->path,$attachment->getClientOriginalName()))
-            //     {
-            //         $file = \App\Models\File::create(['url' => $url]);
-            //         $note->files()->save($file);
-            //     }
-            // }
+
         }    
 
         return redirect()->route('note_edit',['note' => $note]);

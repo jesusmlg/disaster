@@ -21,11 +21,15 @@ class TagController extends Controller
 
         $tags = explode(",", $request->tag);
 
-        foreach ($t as $tags)
+        foreach ($tags as $t)
         {
             $tag = Tag::firstOrNew(['name' => $t]);
-            if($note->tags()->save($tag))
-                session()->flash('message','Tag saved succesfully');
+            if(!$note->tags()->where('id',$tag->id)->exists())
+            {
+                if($note->tags()->save($tag))
+                    session()->flash('message','Tag saved succesfully');
+            }
+                
         }
     	
 
@@ -56,13 +60,21 @@ class TagController extends Controller
     {
         if($request->ajax())
         {
-            $tags = Tag::where('name','ilike', '%'.$request->txt.'%')->get();
-            $html='<ul>';
-            foreach ($tags as $tag) 
+            if($request->txt != "")
             {
-                $html.='<li>'. $tag->name.'</li>';
+                $tags = Tag::where('name','ilike', ''.$request->txt.'%')->get();
+                $html='<ul>';
+                foreach ($tags as $tag) 
+                {
+                    $html.='<li>'. $tag->name.'</li>';
+                }
+                $html.='</ul>';
             }
-            $html.='</ul>';
+            else
+            {
+                $html = "";
+            }
+            
 
             return response()->json(['message' => 'ok', 'html' => $html]);
         }

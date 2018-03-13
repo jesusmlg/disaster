@@ -1,5 +1,8 @@
 $(document).ready(function(){
 
+	var typingTimer;          
+	var doneTypingInterval = 1000;
+
 	$('.summernote').summernote({
 		height: 300,
 	});
@@ -92,7 +95,17 @@ $(document).ready(function(){
 
 	});
 
-	$(document).on('input propertychange paste','#txt-tag', function(e){
+	$(document).on('input propertychange paste keyup','#txt-tag', function(){		
+		clearTimeout(typingTimer);
+  		typingTimer = setTimeout(tagList, doneTypingInterval);
+	});
+
+	$(document).on('keydown','#txt-tag', function(){		
+		clearTimeout(typingTimer);
+	});
+
+	function tagList()
+	{		
 		var pos = $('#txt-tag').position();
 		
 		$('#tag-list').css({'top': pos.top - 20, 'left': pos.left });
@@ -100,10 +113,11 @@ $(document).ready(function(){
 		$.ajax({
 			url: '/tag/list',
 			dataType: 'json',
-			data: {'txt' : $(this).val() },
+			data: {'txt' : $('#txt-tag').val() },
 			method: 'get',
 			success: function(data)
 			{
+				$('#tag-list').css('display', 'block')
 				$("#tag-list").html(data.html);
 				
 			},
@@ -114,18 +128,17 @@ $(document).ready(function(){
 
 
 		});
-	});
+	}
 
 	$(document).on('click','#tag-list ul li',function(e){
-		var txt = $(this).html();
-		var tags = $('#txt-tag').val();
-
-		alert(tags);
 		
+		var txt = $(this).html();
+		
+		$('#txt-tag').val(txt);					
+		$('#btn-add-tag' ).trigger("click");	
+		$('#txt-tag').val('');
+		$('#tag-list').css('display', 'none')
 
-		tags += "," + txt;
-		alert(tags);
-		$('#txt-tag').val(tags);
 	});
 	
 });

@@ -23,15 +23,23 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('123456'),
         ]);
 
+        DB::table('users')->insert([
+            'name' => 'Irene Murillo',
+            'email' => 'ireneemurillo@gmail.com',
+            'password' => bcrypt('123456'),
+        ]);
+
         factory(\App\Models\Note::class,50)->create();
         factory(\App\Models\Tag::class,100)->create();
 
         $noteids = \App\Models\Note::pluck('id')->all();
         $tagids = \App\Models\Tag::pluck('id')->all();
+        $userids = \App\User::pluck('id')->all();
 
         for ($i=0; $i < 100 ; $i++) { 
             $note_id = $faker->randomElement($noteids);
             $tag_id = $faker->randomElement($tagids);
+            $user_id = $faker->randomElement($tagids);
 
             $data = DB::table('notes_tags')->where('note_id', '=' ,$note_id)->where('tag_id','=' ,$tag_id)->first();
             

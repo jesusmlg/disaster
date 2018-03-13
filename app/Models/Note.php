@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class Note extends Model
 {
@@ -24,6 +25,11 @@ class Note extends Model
     	return $this->belongsToMany('\App\Models\File','notes_files','note_id','file_id');
     }
 
+    public function users()
+    {
+        return $this->belongsToMany('\App\User','notes_users','note_id','file_id');
+    }
+
     public static function search($txt)
     {
     	// return DB::table('notes')
@@ -39,6 +45,7 @@ class Note extends Model
         $tags = explode(" ", $txt);
 
         $notes = Note::select('notes.*')
+                ->innerJoin('notes_users','user_id', '=', Auth::user()->id)
                 ->leftJoin('notes_tags','notes.id','=','notes_tags.note_id')
                 ->leftJoin('tags','tags.id','=','notes_tags.tag_id')
                 ->leftJoin('notes_files','notes.id','=','notes_files.note_id')

@@ -27,8 +27,13 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    // public function notes()
+    // {
+    //     return $this->hasMany('\App\Models\Note');
+    // }
+
     public function notes()
     {
-        return $this->hasMany('\App\Models\Note');
+        return $this->belongsToMany('\App\Models\Note', 'notes_files');
     }
 }
