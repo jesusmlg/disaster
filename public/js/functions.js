@@ -38,8 +38,7 @@ $(document).ready(function(){
 
 	});
 
-	$(document).on('click','#btn-add-tag',function(e){
-		
+	$(document).on('click','#btn-add-tag',function(e){		
 		e.preventDefault();				
 		var tag = $("#txt-tag").val();	
 		var note = $("#note_id").val();
@@ -138,6 +137,100 @@ $(document).ready(function(){
 		$('#btn-add-tag' ).trigger("click");	
 		$('#txt-tag').val('');
 		$('#tag-list').css('display', 'none')
+
+	});
+
+	$(document).on('click','.delete-user',function(e){
+		e.preventDefault();
+		url = $(this).attr('data-url');
+		
+		$.ajax({
+			url: url,
+			type:'delete',				
+			dataType: 'json',
+			data: {
+				'_method': 'delete',
+				'_token': $('meta[name="csrf-token"]').attr('content')
+			},
+			success: function(data){
+				$("#note-users").html(data.html);
+			},
+			error: function(data){
+				alert("error");
+			},
+			complete:function(data)
+			{
+				
+			}
+		});
+
+	});
+
+	$(document).on('input propertychange paste keyup','#txt-user', function(){		
+		clearTimeout(typingTimer);
+  		typingTimer = setTimeout(userList, doneTypingInterval);
+	});
+
+	$(document).on('keydown','#txt-user', function(){		
+		clearTimeout(typingTimer);
+	});
+
+	function userList()
+	{		
+		var pos = $('#txt-user').position();
+		
+		$('#user-list').css({'top': pos.top - 20, 'left': pos.left });
+
+		$.ajax({
+			url: '/user/list',
+			dataType: 'json',
+			data: {'txt' : $('#txt-user').val() },
+			method: 'get',
+			success: function(data)
+			{
+				$('#user-list').css('display', 'block')
+				$("#user-list").html(data.html);
+				
+			},
+			error: function(data)
+			{
+				alert("error");
+			}
+
+
+		});
+	}
+
+	$(document).on('click','#user-list ul li',function(e){
+			
+		var user = $(this).attr('id');	
+		var note = $("#note_id").val();
+		
+		var data = { 'user_id' : user,
+					 'note_id': note,
+					'_token': $('meta[name="csrf-token"]').attr('content')
+				};
+
+		$.ajax({
+			url: '/note/user/create',
+			method: 'post',
+			dataType: 'json',
+			data: data,
+			success: function(data)
+			{
+				$("#note-users").html(data.html);
+			},
+			error: function(data)
+			{
+				alert("Error");
+			},
+			complete: function(data)
+			{
+				$('#txt-user').val('');
+				$('#user-list').css('display', 'none')
+			}
+
+		});
 
 	});
 	

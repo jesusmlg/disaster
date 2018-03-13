@@ -30,7 +30,9 @@ class NoteController extends Controller
         $lastTags = Tag::orderBy('created_at','desc')->take(20)->get();   
         $mostUsedTags = Tag::mostUsed()->take(20)->get();
 
-        $total = Note::all()->count();
+        $total = Note::whereHas('users',function($q){
+            $q->where('user_id', Auth::user()->id);
+        })->count();
         
 
         if($request->view != "")
@@ -41,9 +43,14 @@ class NoteController extends Controller
         elseif($request->tag)
             $notes = Note::whereHas('tags', function($q) use ($request){
                 $q->where('name', $request->tag);
-            })->paginate(20);
+            })->whereHas('users', function($q) use ($request){
+                $q->where('id', Auth::user()->id);
+            })->orderBy('created_at', 'desc')->paginate(20);
         else
-            $notes = Note::orderBy('created_at', 'desc')->paginate(20);
+            $notes = Note::whereHas('users', function($q) use ($request){
+                $q->where('id', Auth::user()->id);
+            })->orderBy('created_at', 'desc')->paginate(20);
+            
 
 
         return view('note.index',['notes'=> $notes, 'total' => $total, 'lastTags' => $lastTags, 'mostUsedTags' => $mostUsedTags]);
@@ -68,6 +75,8 @@ class NoteController extends Controller
 
         if($note->save())
         {
+            $note->users()->save(Auth::user());
+
             if($request->hasFile('attachments'))
                 $this->saveFiles($request,$note);
         }                
@@ -113,7 +122,6 @@ class NoteController extends Controller
 
         foreach ($request->attachments as $attachment) 
             {                
-                //Storage::put('files/'.$file->getClientOriginalName(),$file);
                 if($url = $attachment->storeAs($path,$attachment->getClientOriginalName()))
                 {
                     $file = \App\Models\File::create(['url' => $url]);

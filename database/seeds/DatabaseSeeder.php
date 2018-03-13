@@ -29,45 +29,45 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('123456'),
         ]);
 
-        factory(\App\Models\Note::class,50)->create();
-        factory(\App\Models\Tag::class,100)->create();
+        // factory(\App\Models\Note::class,50)->create();
+        // factory(\App\Models\Tag::class,100)->create();
 
-        $noteids = \App\Models\Note::pluck('id')->all();
-        $tagids = \App\Models\Tag::pluck('id')->all();
-        $userids = \App\User::pluck('id')->all();
+        // $noteids = \App\Models\Note::pluck('id')->all();
+        // $tagids = \App\Models\Tag::pluck('id')->all();
+        // $userids = \App\User::pluck('id')->all();
 
-        for ($i=0; $i < 100 ; $i++) { 
-            $note_id = $faker->randomElement($noteids);
-            $tag_id = $faker->randomElement($tagids);
-            $user_id = $faker->randomElement($tagids);
+        // for ($i=0; $i < 100 ; $i++) { 
+        //     $note_id = $faker->randomElement($noteids);
+        //     $tag_id = $faker->randomElement($tagids);
+        //     $user_id = $faker->randomElement($tagids);
 
-            $data = DB::table('notes_tags')->where('note_id', '=' ,$note_id)->where('tag_id','=' ,$tag_id)->first();
+        //     $data = DB::table('notes_tags')->where('note_id', '=' ,$note_id)->where('tag_id','=' ,$tag_id)->first();
             
-            if($data == null)
-            {
-                DB::table('notes_tags')->insert([
-                    'note_id' => $note_id,
-                    'tag_id' => $tag_id
-                ]);    
-            }            
+        //     if($data == null)
+        //     {
+        //         DB::table('notes_tags')->insert([
+        //             'note_id' => $note_id,
+        //             'tag_id' => $tag_id
+        //         ]);    
+        //     }            
             
-        }
+        // }
 
-        for ($i=0; $i < 20; $i++) {             
-            //$note_id = $faker->randomElement($noteids);            
-            $note = DB::table('notes')->where('id', '=', $faker->randomElement($noteids))->first();            
-            $path = "storage/files/seed/";
-            if(!file_exists(public_path($path)))
-                mkdir(public_path($path),0777,true);
+        // for ($i=0; $i < 20; $i++) {             
+        //     //$note_id = $faker->randomElement($noteids);            
+        //     $note = DB::table('notes')->where('id', '=', $faker->randomElement($noteids))->first();            
+        //     $path = "storage/files/seed/";
+        //     if(!file_exists(public_path($path)))
+        //         mkdir(public_path($path),0777,true);
 
-            $file = $faker->file(public_path('test'),public_path($path),false);
+        //     $file = $faker->file(public_path('test'),public_path($path),false);
 
-            $file_id = DB::table('files')->insertGetId(['url' => $path.$file]);
+        //     $file_id = DB::table('files')->insertGetId(['url' => $path.$file]);
 
-            DB::table('notes_files')->insert([
-                'note_id' => $note->id,
-                'file_id' => $file_id
-            ]);            
-        }
+        //     DB::table('notes_files')->insert([
+        //         'note_id' => $note->id,
+        //         'file_id' => $file_id
+        //     ]);            
+        // }
     }
 }

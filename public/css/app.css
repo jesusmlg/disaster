@@ -8553,11 +8553,11 @@ a {
   display: table-cell;
   padding: 3px 10px;
   margin-right: 150px;
-  width: 48%;
+  width: 30%;
 }
 
 .divTableCellSeparator {
-  width: 4%;
+  width: 3%;
 }
 
 .divTableBody {
@@ -8570,7 +8570,8 @@ a {
 }
 
 #note-tags,
-#note-files li {
+#note-files,
+#note-users li {
   list-style: none;
 }
 

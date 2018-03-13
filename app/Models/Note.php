@@ -27,7 +27,7 @@ class Note extends Model
 
     public function users()
     {
-        return $this->belongsToMany('\App\User','notes_users','note_id','file_id');
+        return $this->belongsToMany('\App\User','notes_users','note_id','user_id');
     }
 
     public static function search($txt)
@@ -45,11 +45,13 @@ class Note extends Model
         $tags = explode(" ", $txt);
 
         $notes = Note::select('notes.*')
-                ->innerJoin('notes_users','user_id', '=', Auth::user()->id)
+                ->innerJoin('notes_users','notes.id', '=', 'notes_users.notes_id')
+                ->innerJoin('users','user.id', '=', 'notes_users.user_id')
                 ->leftJoin('notes_tags','notes.id','=','notes_tags.note_id')
                 ->leftJoin('tags','tags.id','=','notes_tags.tag_id')
                 ->leftJoin('notes_files','notes.id','=','notes_files.note_id')
                 ->leftJoin('files','files.id','=','notes_files.file_id')
+                ->where('notes_users.user_id', '=', Auth::user())
                 ->where('notes.title','ilike','%'.$txt.'%')
                 ->orWhere('files.url','ilike','%'.$txt.'%')
                 ->orWhere('notes.note','ilike','%'.$txt.'%')

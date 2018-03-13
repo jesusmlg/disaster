@@ -40,5 +40,9 @@ Route::middleware('auth')->group(function()
     Route::get('/tags','TagController@index')->name('tag_index');
     Route::get('/tag/list','TagController@list')->name('tag_list');
 
+    Route::delete('/note/{note_id}/user/{user_id}/destroy','UserController@destroyNoteUser')->name('note_user_destroy');
+    Route::get('/user/list','UserController@list')->name('user_list');
+    Route::post('/note/user/create', 'UserController@create')->name('user_note_create');
+
 });
 

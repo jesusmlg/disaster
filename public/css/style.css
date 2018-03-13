@@ -1,4 +1,4 @@
-#tag-list{
+#tag-list, #user-list{
 	width: 30%;
 	max-height: 200px;
 	border:1px solid #CCC;
@@ -8,17 +8,17 @@
 	margin-bottom: 10px;
 	display: none;
 }
-#tag-list ul
-{
-	padding-left: 4px;
+#tag-list, #user-list ul
+{	
 	margin: 0px 0px 0px 0px;
+	padding-left: 0px;
 }
-#tag-list ul li{
+#tag-list, #user-list ul li{
 	list-style: none;
-	
+	padding-left: 4px;
 }
 
-#tag-list ul li:hover{
+#tag-list, #user-list ul li:hover{
 	background-color: #4498CD;
 	color: #FFF;
 	cursor: pointer;	
