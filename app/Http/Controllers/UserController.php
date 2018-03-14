@@ -52,8 +52,16 @@ class UserController extends Controller
         {
             if($request->txt != "")
             {
-                $users = User::where('name','ilike', '%'.$request->txt.'%')
-                             ->orWhere('email', 'ilike', '%'.$request->txt.'%')->get();
+
+                $users = User::whereNotIn('id',function($q) use ($request){
+                                $q->select('user_id')->from('notes_users')->where('note_id',$request->note_id);
+                            })             
+                            ->where(function($q) use ($request){
+                                $q->where('name','ilike', '%'.$request->txt.'%');
+                                $q->orWhere('email', 'ilike', '%'.$request->txt.'%');
+                            })
+                            ->get();
+
                 $html='<ul>';
                 foreach ($users as $user) 
                 {

@@ -112,7 +112,11 @@ $(document).ready(function(){
 		$.ajax({
 			url: '/tag/list',
 			dataType: 'json',
-			data: {'txt' : $('#txt-tag').val() },
+			data: 
+			{
+				'txt' : $('#txt-tag').val(), 
+				'note_id': $("#note_id").val()
+			},
 			method: 'get',
 			success: function(data)
 			{
@@ -184,7 +188,11 @@ $(document).ready(function(){
 		$.ajax({
 			url: '/user/list',
 			dataType: 'json',
-			data: {'txt' : $('#txt-user').val() },
+			data: 
+			{
+				'txt' : $('#txt-user').val(), 
+				'note_id': $("#note_id").val()
+			},
 			method: 'get',
 			success: function(data)
 			{

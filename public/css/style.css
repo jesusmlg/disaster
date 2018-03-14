@@ -8,18 +8,21 @@
 	margin-bottom: 10px;
 	display: none;
 }
-#tag-list, #user-list ul
+#tag-list ul, #user-list ul
 {	
 	margin: 0px 0px 0px 0px;
 	padding-left: 0px;
 }
-#tag-list, #user-list ul li{
+#tag-list ul li, #user-list ul li{
 	list-style: none;
 	padding-left: 4px;
 }
 
-#tag-list, #user-list ul li:hover{
+#tag-list ul li:hover, #user-list ul li:hover{
 	background-color: #4498CD;
 	color: #FFF;
 	cursor: pointer;	
+}
+.grid-notes:hover{
+	border: 1px solid #C1E4FF;
 }

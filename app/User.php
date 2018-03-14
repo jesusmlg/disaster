@@ -34,6 +34,6 @@ class User extends Authenticatable
 
     public function notes()
     {
-        return $this->belongsToMany('\App\Models\Note', 'notes_files');
+        return $this->belongsToMany('\App\Models\Note', 'notes_users');
     }
 }

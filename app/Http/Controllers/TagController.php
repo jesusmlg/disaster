@@ -62,12 +62,20 @@ class TagController extends Controller
         {
             if($request->txt != "")
             {
-                $tags = Tag::where('name','ilike', ''.$request->txt.'%')->get();
+                //$tags = Tag::where('name','ilike', ''.$request->txt.'%')->get();
+                $tags = Tag::whereNotIn('id',function($q) use ($request,&$find){
+                        $q->select('tag_id')->from('notes_tags')->where('note_id', $request->note_id);
+                        })
+                        ->where('name','ilike', ''.$request->txt.'%')
+                        ->get();
+                 
                 $html='<ul>';
+                $html.= '<li>'. $request->txt.'</li>';
                 foreach ($tags as $tag) 
                 {
                     $html.='<li>'. $tag->name.'</li>';
                 }
+                                    
                 $html.='</ul>';
             }
             else
