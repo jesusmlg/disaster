@@ -57,8 +57,8 @@ class UserController extends Controller
                                 $q->select('user_id')->from('notes_users')->where('note_id',$request->note_id);
                             })             
                             ->where(function($q) use ($request){
-                                $q->where('name','ilike', '%'.$request->txt.'%');
-                                $q->orWhere('email', 'ilike', '%'.$request->txt.'%');
+                                $q->where('name','like', '%'.$request->txt.'%');
+                                $q->orWhere('email', 'like', '%'.$request->txt.'%');
                             })
                             ->get();
 
