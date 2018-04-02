@@ -66,7 +66,7 @@ class TagController extends Controller
                 $tags = Tag::whereNotIn('id',function($q) use ($request,&$find){
                         $q->select('tag_id')->from('notes_tags')->where('note_id', $request->note_id);
                         })
-                        ->where('name','ilike', ''.$request->txt.'%')
+                        ->where('name','like', ''.$request->txt.'%')
                         ->get();
                  
                 $html='<ul>';

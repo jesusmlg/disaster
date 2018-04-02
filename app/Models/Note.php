@@ -52,13 +52,13 @@ class Note extends Model
                 ->leftJoin('notes_files','notes.id','=','notes_files.note_id')
                 ->leftJoin('files','files.id','=','notes_files.file_id')
                 ->where('notes_users.user_id', '=', Auth::user())
-                ->where('notes.title','ilike','%'.$txt.'%')
-                ->orWhere('files.url','ilike','%'.$txt.'%')
-                ->orWhere('notes.note','ilike','%'.$txt.'%')
+                ->where('notes.title','like','%'.$txt.'%')
+                ->orWhere('files.url','like','%'.$txt.'%')
+                ->orWhere('notes.note','like','%'.$txt.'%')
                 //->orWhere('tags.name','ilike','%'.$txt.'%')
                 ->orWhere(function($query) use ($tags){
                     foreach($tags as $t) {
-                        $query->orWhere('tags.name','ilike','%'.$t.'%');
+                        $query->orWhere('tags.name','like','%'.$t.'%');
                         }
                     }
                 )
