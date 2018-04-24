@@ -18,7 +18,7 @@ class FirstTestPageTest extends DuskTestCase
     public function testNoLoggedGoToLogin()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/login')
+            $browser->visit('/lgin')
                     ->assertSee('Login');
         });
 
