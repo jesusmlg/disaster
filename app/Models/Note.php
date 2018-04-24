@@ -45,13 +45,13 @@ class Note extends Model
         $tags = explode(" ", $txt);
 
         $notes = Note::select('notes.*')
-                ->innerJoin('notes_users','notes.id', '=', 'notes_users.notes_id')
-                ->innerJoin('users','user.id', '=', 'notes_users.user_id')
+                ->join('notes_users','notes.id', '=', 'notes_users.note_id')
+                ->join('users','users.id', '=', 'notes_users.user_id')
                 ->leftJoin('notes_tags','notes.id','=','notes_tags.note_id')
                 ->leftJoin('tags','tags.id','=','notes_tags.tag_id')
                 ->leftJoin('notes_files','notes.id','=','notes_files.note_id')
                 ->leftJoin('files','files.id','=','notes_files.file_id')
-                ->where('notes_users.user_id', '=', Auth::user())
+                ->where('notes_users.user_id', '=', Auth::user()->id)
                 ->where('notes.title','like','%'.$txt.'%')
                 ->orWhere('files.url','like','%'.$txt.'%')
                 ->orWhere('notes.note','like','%'.$txt.'%')
