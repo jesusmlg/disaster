@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Browser;
+namespace Tests\Feature;
 
 use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
@@ -18,7 +18,7 @@ class FirstTestPageTest extends DuskTestCase
     public function testNoLoggedGoToLogin()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/lgin')
+            $browser->visit('/login')
                     ->assertSee('Login');
         });
 
@@ -36,7 +36,9 @@ class FirstTestPageTest extends DuskTestCase
                      ->type('password','secret')
                      ->press('Login')
                      ->assertPathIs('/notes')
-                     ->assertSee('MyTestUser');
+                     ->assertSee('MyTestUser')
+                     ->clickLink('Logout');
+
 
         });
     }

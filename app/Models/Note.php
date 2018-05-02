@@ -68,7 +68,17 @@ class Note extends Model
         return $notes;
         
     }
-    
+
+    public static function searchByTag($tag)
+    {
+        $notes = Note::whereHas('tags', function($q) use ($tag){
+                $q->where('name', $tag);
+            })->whereHas('users', function($q) {
+                $q->where('id', Auth::user()->id);
+            })->orderBy('created_at', 'desc')->paginate(20);
+
+        return $notes;
+    }    
 
     public function getCreatedAtAttribute($value)
     {

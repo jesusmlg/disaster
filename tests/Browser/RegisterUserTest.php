@@ -1,13 +1,13 @@
 <?php
 
-namespace Tests\Browser;
+namespace tests\Browser;
 
 use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 
-class registerUserTest extends DuskTestCase
+class RegisterUserTest extends DuskTestCase
 {
     use DatabaseMigrations;
        
@@ -20,13 +20,16 @@ class registerUserTest extends DuskTestCase
                     ->type('name', 'usertest')
                     ->type('email', 'usertest@usertest.com')
                     ->type('password','123456')
-                    ->type('password-confirm','123456')
+                    ->type('password_confirmation','123456')
                     ->press('Register')
                     ->assertPathIs('/home')
-                    ->assertSee('usertest');
+                    ->assertSee('usertest')
+                    ->assertSee('Total Files: 0')
+                    ->clickLink('Logout')
+                    ->assertSee('Login');
 
         });
-    }
+    }    
 
     
 }

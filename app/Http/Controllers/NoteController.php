@@ -41,11 +41,7 @@ class NoteController extends Controller
         if($request->txt)
             $notes = Note::search($request->txt);
         elseif($request->tag)
-            $notes = Note::whereHas('tags', function($q) use ($request){
-                $q->where('name', $request->tag);
-            })->whereHas('users', function($q) use ($request){
-                $q->where('id', Auth::user()->id);
-            })->orderBy('created_at', 'desc')->paginate(20);
+            $notes = Note::searchByTag($request->tag);
         else
             $notes = Note::whereHas('users', function($q) use ($request){
                 $q->where('id', Auth::user()->id);

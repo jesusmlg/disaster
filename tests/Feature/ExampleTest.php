@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Laravel\Dusk\Browser;
 use App\User;
 
 class ExampleTest extends TestCase
@@ -20,13 +21,7 @@ class ExampleTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function testIndexNotes()
-    {
-        $user = factory(User::class)->create();
-        $response = $this->actingAs($user)->get("/");
-        $response->assertStatus(200);
-        $response->assertSee('logout');
-    }
+
 
     public function testRedirectWhenNoLogin()
     {
@@ -35,4 +30,6 @@ class ExampleTest extends TestCase
         $response->assertDontSee('logout');
 
     }
+
+
 }

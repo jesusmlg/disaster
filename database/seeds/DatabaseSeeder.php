@@ -18,17 +18,44 @@ class DatabaseSeeder extends Seeder
         array_map('unlink', glob(public_path('storage/files/seed/*')));
 
         DB::table('users')->insert([
-            'name' => 'Jesus María',
-            'email' => 'inteclu@gmail.com',
+            'name' => 'Antonio José',
+            'email' => 'blablau@gmail.com',
             'password' => bcrypt('123456'),
         ]);
 
         DB::table('users')->insert([
-            'name' => 'Irene Murillo',
-            'email' => 'ireneemurillo@gmail.com',
+            'name' => 'Maria del Carmen Blanes',
+            'email' => 'bleble@gmail.com',
             'password' => bcrypt('123456'),
         ]);
 
+        // for($i=0;$i<20;$i++)
+        // {
+            $note = factory(\App\Models\Note::class)->create();
+            
+            // for($j=0;$j<3;$i++)
+            // {
+            //     $note->tags()->save(factory(\App\Models\Tag::class)->create());
+            // }
+            $note->tags()->save(factory(\App\Models\Tag::class)->create(['name'=>'Factura']));
+            $note->tags()->save(factory(\App\Models\Tag::class)->create(['name'=>'Abril']));
+            $note->tags()->save(factory(\App\Models\Tag::class)->create(['name'=>'2018']));
+            $note->users()->save(\App\User::first());
+
+            $note = factory(\App\Models\Note::class)->create();
+            $note->tags()->save(factory(\App\Models\Tag::class)->create(['name'=>'Factura']));
+            $note->tags()->save(factory(\App\Models\Tag::class)->create(['name'=>'Mayo']));
+            $note->tags()->save(factory(\App\Models\Tag::class)->create(['name'=>'2018']));
+            $note->users()->save(\App\User::first());
+
+            $note = factory(\App\Models\Note::class)->create();
+            $note->tags()->save(factory(\App\Models\Tag::class)->create(['name'=>'Ticket']));
+            $note->tags()->save(factory(\App\Models\Tag::class)->create(['name'=>'Mayo']));
+            $note->tags()->save(factory(\App\Models\Tag::class)->create(['name'=>'2018']));
+            $note->users()->save(\App\User::first());
+
+        // }
+        
         // factory(\App\Models\Note::class,50)->create();
         // factory(\App\Models\Tag::class,100)->create();
 
