@@ -45,6 +45,7 @@ class Note extends Model
         $tags = explode(" ", $txt);
 
         $notes = Note::select('notes.*')
+                ->distinct()
                 ->join('notes_users','notes.id', '=', 'notes_users.note_id')
                 ->join('users','users.id', '=', 'notes_users.user_id')
                 ->leftJoin('notes_tags','notes.id','=','notes_tags.note_id')
