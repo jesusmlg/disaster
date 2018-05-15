@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
 	var typingTimer;          
-	var doneTypingInterval = 1000;
+	var doneTypingInterval = 600;
 
 	$('.summernote').summernote({
 		height: 300,
