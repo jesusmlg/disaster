@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Laravel\Dusk\Browser;
 use App\User;
 
 class ExampleTest extends TestCase
@@ -27,8 +26,13 @@ class ExampleTest extends TestCase
     {
         $response = $this->get('/');
         $response->assertRedirect(route('login'));
-        $response->assertDontSee('logout');
+        $response->assertDontSee('logout');        
+    }
 
+    public function testUserHome()
+    {
+        $response = $this->get('/login');
+        $response->assertStatus(200);
     }
 
 
