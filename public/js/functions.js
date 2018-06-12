@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
 	var typingTimer;          
-	var doneTypingInterval = 600;
+	var doneTypingInterval = 500;
 
 	$('.summernote').summernote({
 		height: 300,
@@ -94,12 +94,13 @@ $(document).ready(function(){
 
 	});
 
-	$(document).on('input propertychange paste keyup','#txt-tag', function(){		
+	$(document).on('input propertychange paste keyup','#txt-tag', function(){
+		$("#tag-list").html("Loading ...");		
 		clearTimeout(typingTimer);
   		typingTimer = setTimeout(tagList, doneTypingInterval);
 	});
 
-	$(document).on('keydown','#txt-tag', function(){		
+	$(document).on('keydown','#txt-tag', function(){			
 		clearTimeout(typingTimer);
 	});
 
@@ -108,6 +109,9 @@ $(document).ready(function(){
 		var pos = $('#txt-tag').position();
 		
 		$('#tag-list').css({'top': pos.top - 20, 'left': pos.left });
+		$('#tag-list').css('display', 'block');
+		//$("#tag-list").html('Loading ...');
+
 
 		$.ajax({
 			url: '/tag/list',
@@ -119,13 +123,12 @@ $(document).ready(function(){
 			},
 			method: 'get',
 			success: function(data)
-			{
-				$('#tag-list').css('display', 'block')
-				$("#tag-list").html(data.html);
-				
+			{				
+				$("#tag-list").html(data.html);				
 			},
 			error: function(data)
 			{
+				$("#tag-list").html("");
 				alert("error");
 			}
 
@@ -170,7 +173,8 @@ $(document).ready(function(){
 
 	});
 
-	$(document).on('input propertychange paste keyup','#txt-user', function(){		
+	$(document).on('input propertychange paste keyup','#txt-user', function(){	
+		$("#user-list").html("Loading ...");	
 		clearTimeout(typingTimer);
   		typingTimer = setTimeout(userList, doneTypingInterval);
 	});
@@ -184,6 +188,7 @@ $(document).ready(function(){
 		var pos = $('#txt-user').position();
 		
 		$('#user-list').css({'top': pos.top - 20, 'left': pos.left });
+		$('#user-list').css('display', 'block');
 
 		$.ajax({
 			url: '/user/list',
@@ -196,7 +201,7 @@ $(document).ready(function(){
 			method: 'get',
 			success: function(data)
 			{
-				$('#user-list').css('display', 'block')
+				
 				$("#user-list").html(data.html);
 				
 			},
