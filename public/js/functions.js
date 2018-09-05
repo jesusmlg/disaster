@@ -1,11 +1,7 @@
 $(document).ready(function(){
 
 	var typingTimer;          
-<<<<<<< HEAD
 	var doneTypingInterval = 600;
-=======
-	var doneTypingInterval = 500;
->>>>>>> 32186c692f4a5e79f04e111148be0d9685e96db4
 
 	$('.summernote').summernote({
 		height: 300,
@@ -75,7 +71,7 @@ $(document).ready(function(){
 	$(document).on('click','.delete-file',function(e){
 		e.preventDefault();		
 		url = $(this).attr('data-url');
-		alert(url);
+		//alert(url);
 		$.ajax({
 			url: url,
 			type:'delete',				
