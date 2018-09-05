@@ -251,7 +251,7 @@
 			"file": "app/Models/Note.php",
 			"settings":
 			{
-				"buffer_size": 3780,
+				"buffer_size": 3809,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -433,7 +433,7 @@
 			"file": "resources/views/layouts/app.blade.php",
 			"settings":
 			{
-				"buffer_size": 1554,
+				"buffer_size": 1565,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -457,10 +457,10 @@
 			}
 		},
 		{
-			"contents": "Package Control Messages\n========================\n\nSublimeLinter-php\n-----------------\n\n  SublimeLinter-php 1.2.1\n  ---------------------------\n  \n  The 'cmd' setting has been deprecated. The new name for the same thing is 'executable' which is the common name for all linters in SublimeLinter land.\n  \n  {\n      \"SublimeLinter\": {\n          \"linters\": {\n              \"php\": {\n                  \"executable\": \"/path/to/php\"\n              }\n          }\n      }\n  }\n\n\nSublimeLinter\n-------------\n\n  SublimeLinter 4.4\n  =================\n  \n  Adds the \"name\" attribute to explicitly define the name of a linter.\n  \n  And some more or less minor bug fixes.\n\n  SublimeLinter 4.3\n  =================\n  \n  - Now shows the active/assigned linters in the status bar.\n    SL will show e.g. 'eslint(ok)' if there were no errors, or 'eslint(1|2)' when\n    there is 1 warning and 2 errors.\n    If there is a hard error with the configuration it will state 'eslint(erred)'.\n    The counters_template setting is still applied, but different than before.\n    Check the default settings for more information.\n  \n  - Introduces a new setting called 'kill_old_processes'. If set it to true,\n    SL will send a 'terminate' signal to processes when SL won't use its output.\n    Use this if you're using slow linters that seem to hang ST a lot.\n    Related PR: https://github.com/SublimeLinter/SublimeLinter/pull/1250\n  \n  - For OSX we now wait (up to 1 minute) until the env has been loaded by Sublime.\n    This should prevent issues with SL not finding the executables.\n    Note that dev builds of ST also fix this issue for us.\n    Related ST issue: https://github.com/SublimeTextIssues/Core/issues/1877\n  \n  - Fixed a bug where hovering would sometimes not open the right tooltip.\n  - Fixed the visualization of multi-line errors in tooltips.\n  - Fixed a bug where not all gutter icons were drawn.\n  \n  - The debounce delay before a lint in background mode will now be set\n    automatically based on how fast your computer and your linters actually are.\n  - Added an upper limit for how many lint processes can run in parallel.\n  - Much improved logging about what command SL actually runs.\n  \n  \n  For plugin developers\n  ----------------------\n  \n  BREAKING CHANGES:\n  - For STREAM_BOTH linters we will call 'linter.on_stderr()' automatically if\n    there is any output on 'stderr' and only pass 'stdout' down.\n    Set 'on_stderr = None' to disable.\n  - Removed 'util.popen()'\n  - Removed 'linter.build_options()'\n  \n  DEPRECATED:\n  - 'util.communicate' has been deprecated,\n    The functionality is now in 'self._communicate'.\n    If you need to quickly run a command, use 'util.check_output'\n  \n  NEW:\n  - New API: popen calls now return an object, not just a string of the output\n    with the typical members '.stdout/.stderr/returncode'.\n    For compatibility, only the new 'linter.parse_output(proc, virtual_view)'\n    actually sees this 'proc'.\n  - If the linter failed, call 'self.notify_failure()'.\n    You should additionally log the error either as an error or a warning.\n  - In the 'defaults' setting we now support flags like \"{'--stdin': True|False}\".\n    You can also define e.g. \"{'--include': ''}\" instead of \"{'--include:': ''}\".\n  - You can now get the linter settings via 'get_linter_settings(linter, view)'.\n",
+			"contents": "Package Control Messages\n========================\n\nSublimeLinter-php\n-----------------\n\n  SublimeLinter-php 1.2.1\n  ---------------------------\n  \n  The 'cmd' setting has been deprecated. The new name for the same thing is 'executable' which is the common name for all linters in SublimeLinter land.\n  \n  {\n      \"SublimeLinter\": {\n          \"linters\": {\n              \"php\": {\n                  \"executable\": \"/path/to/php\"\n              }\n          }\n      }\n  }\n\n\nSublimeLinter\n-------------\n\n  SublimeLinter 4.4\n  =================\n  \n  Adds the \"name\" attribute to explicitly define the name of a linter.\n  \n  And some more or less minor bug fixes.\n\n  SublimeLinter 4.3\n  =================\n  \n  - Now shows the active/assigned linters in the status bar.\n    SL will show e.g. 'eslint(ok)' if there were no errors, or 'eslint(1|2)' when\n    there is 1 warning and 2 errors.\n    If there is a hard error with the configuration it will state 'eslint(erred)'.\n    The counters_template setting is still applied, but different than before.\n    Check the default settings for more information.\n  \n  - Introduces a new setting called 'kill_old_processes'. If set it to true,\n    SL will send a 'terminate' signal to processes when SL won't use its output.\n    Use this if you're using slow linters that seem to hang ST a lot.\n    Related PR: https://github.com/SublimeLinter/SublimeLinter/pull/1250\n  \n  - For OSX we now wait (up to 1 minute) until the env has been loaded by Sublime.\n    This should prevent issues with SL not finding the executables.\n    Note that dev builds of ST also fix this issue for us.\n    Related ST issue: https://github.com/SublimeTextIssues/Core/issues/1877\n  \n  - Fixed a bug where hovering would sometimes not open the right tooltip.\n  - Fixed the visualization of multi-line errors in tooltips.\n  - Fixed a bug where not all gutter icons were drawn.\n  \n  - The debounce delay before a lint in background mode will now be set\n    automatically based on how fast your computer and your linters actually are.\n  - Added an upper limit for how many lint processes can run in parallel.\n  - Much improved logging about what command SL actually runs.\n  \n  \n  For plugin developers\n  ----------------------\n  \n  BREAKING CHANGES:\n  - For STREAM_BOTH linters we will call 'linter.on_stderr()' automatically if\n    there is any output on 'stderr' and only pass 'stdout' down.\n    Set 'on_stderr = None' to disable.\n  - Removed 'util.popen()'\n  - Removed 'linter.build_options()'\n  \n  DEPRECATED:\n  - 'util.communicate' has been deprecated,\n    The functionality is now in 'self._communicate'.\n    If you need to quickly run a command, use 'util.check_output'\n  \n  NEW:\n  - New API: popen calls now return an object, not just a string of the output\n    with the typical members '.stdout/.stderr/returncode'.\n    For compatibility, only the new 'linter.parse_output(proc, virtual_view)'\n    actually sees this 'proc'.\n  - If the linter failed, call 'self.notify_failure()'.\n    You should additionally log the error either as an error or a warning.\n  - In the 'defaults' setting we now support flags like \"{'--stdin': True|False}\".\n    You can also define e.g. \"{'--include': ''}\" instead of \"{'--include:': ''}\".\n  - You can now get the linter settings via 'get_linter_settings(linter, view)'.\n\n\nSublimeLinter\n-------------\n\n  SublimeLinter 4.6\n  =================\n  \n  You can now set \"lint_mode\" per linter.\n  \n  If you have \"background\" as your default mode, this new setting allows you\n  to run some linters only on save, or manually.\n  \n  http://www.sublimelinter.com/en/stable/linter_settings.html\n\n  SublimeLinter 4.5\n  =================\n  \n  Sublime Text 3.1 has been released.\n  \n  - Removed the detection of environment-readiness.\n    Sublime Text 3.1 now loads the environment before telling plugins it's ready.\n  - Removed documentation about debugging env/path issues on macOS.\n  \n  We noticed some users having an issue where a linter couldn't find \"node\" even\n  though \"node\" is in their $PATH. If you're having this problem you can remedy\n  it by patching the \"env\" for that linter in your settings like so:\n  \n  \"linters\": {\n      \"eslint\": {\n          \"env\": {\"PATH\":\"/usr/local/bin/\"}\n      }\n  }\n",
 			"settings":
 			{
-				"buffer_size": 3313,
+				"buffer_size": 4235,
 				"line_ending": "Unix",
 				"name": "Package Control Messages",
 				"read_only": true,
@@ -1021,7 +1021,7 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3780,
+						"buffer_size": 3809,
 						"regions":
 						{
 						},
@@ -5458,15 +5458,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1554,
+						"buffer_size": 1565,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1313,
-								1313
+								0,
+								0
 							]
 						],
 						"settings":
@@ -5974,15 +5974,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3313,
+						"buffer_size": 4235,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3313,
-								3313
+								4235,
+								4235
 							]
 						],
 						"settings":
@@ -5993,6 +5993,79 @@
 							"auto_indent": false,
 							"bracket_highlighter.busy": false,
 							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content"
+							],
 							"default_dir": "/home/jesusmlg/development/disaster/resources/views/auth/passwords",
 							"syntax": "Packages/Text/Plain text.tmLanguage",
 							"tab_width": 2,
@@ -7639,46 +7712,31 @@
 								"bh_c_define_open",
 								"bh_c_define_close",
 								"bh_c_define_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
 								"bh_round",
 								"bh_round_center",
 								"bh_round_open",
 								"bh_round_close",
 								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
 								"bh_single_quote",
 								"bh_single_quote_center",
 								"bh_single_quote_open",
 								"bh_single_quote_close",
 								"bh_single_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
 								"bh_square",
 								"bh_square_center",
 								"bh_square_open",
@@ -7688,7 +7746,22 @@
 								"bh_unmatched_center",
 								"bh_unmatched_open",
 								"bh_unmatched_close",
-								"bh_unmatched_content"
+								"bh_unmatched_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content"
 							],
 							"default_dir": "/home/jesusmlg/development/disaster/app/Http/Controllers",
 							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
