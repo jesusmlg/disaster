@@ -8578,10 +8578,17 @@ a {
 .grid-notes {
   text-align: center;
   margin-bottom: 20px;
+  height: 100px;
 }
 
 .grid-notes img {
   width: 64px;
+}
+
+.grid-notes p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .img-small {
@@ -8600,5 +8607,9 @@ a {
 
 .logo-main {
   margin: 0 auto;
+}
+
+#loading-icon {
+  display: none;
 }
 
